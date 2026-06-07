@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SOFT Family Day 2026 — Registration</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,300;1,6..12,400&family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ============================================================
+     CSS CUSTOM PROPERTIES — Heavenly Light Palette
+  ============================================================ */
+  :root {
+    --sky-pale:  #F2F8FF;
+    --sky:       #DFF0FB;
+    --sky-dk:    #C2DFF2;
+    --blue:      #2E82B5;
+    --blue-dk:   #1B6090;
+    --blue-lt:   #5AAAD6;
+    --gold:      #C49A2A;
+    --gold-lt:   #E6C970;
+    --gold-pale: #FBF5E0;
+    --ivory:     #FDFCF9;
+    --pearl:     #FFFFFF;
+    --navy:      #12293E;
+    --navy-md:   #2E4A62;
+    --navy-lt:   #6789A0;
+    --dove:      #EBF4FA;
+
+    --serif:   'Cormorant Garamond', Georgia, serif;
+    --label:   'Cinzel', serif;
+    --sans:    'Nunito Sans', system-ui, sans-serif;
+
+    --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ============================================================
+     RESET & BASE
+  ============================================================ */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    color: var(--navy);
+    min-height: 100svh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Multi-radial gradient sky background */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 90% 60% at 15% 0%,  rgba(193, 228, 248, 0.55) 0%, transparent 60%),
+      radial-gradient(ellipse 70% 70% at 90% 12%, rgba(196, 154, 42, 0.13) 0%, transparent 55%),
+      radial-gradient(ellipse 100% 80% at 50% 112%, rgba(46, 130, 181, 0.14) 0%, transparent 52%),
+      radial-gradient(ellipse 50% 40% at 5% 85%,  rgba(193, 228, 248, 0.25) 0%, transparent 50%),
+      var(--sky-pale);
+    z-index: -2;
+  }
+
+  /* Subtle grain overlay for texture */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ============================================================
+     SHARED LAYOUT
+  ============================================================ */
+  .page {
+    flex: 1;
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 40px 22px 56px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .brand-mark {
+    text-align: center;
+    margin-bottom: 30px;
+    opacity: 0;
+    animation: fadeUp 0.8s var(--ease-out) 0.05s forwards;
+  }
+  .brand-cross {
+    font-size: 16px;
+    color: var(--gold);
+    letter-spacing: 0.3em;
+    display: block;
+    margin-bottom: 12px;
+  }
+  .brand-name {
+    font-family: var(--label);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .brand-name::before, .brand-name::after {
+    content: '';
+    width: 30px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--blue-lt));
+    opacity: 0.7;
+  }
+  .brand-name::before { background: linear-gradient(to left, transparent, var(--blue-lt)); }
+
+  /* ============================================================
+     CARD (base elevated surface)
+  ============================================================ */
+  .card {
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(46, 130, 181, 0.14);
+    border-radius: 20px;
+    padding: 38px 30px;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.9) inset,
+      0 10px 34px rgba(46, 130, 181, 0.10),
+      0 28px 60px rgba(18, 41, 62, 0.08);
+  }
+
+  /* ============================================================
+     LOCK SCREEN
+  ============================================================ */
+  #lock {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .lock-card {
+    text-align: center;
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease-out) 0.2s forwards;
+    position: relative;
+    overflow: hidden;
+  }
+  .lock-card::before {
+    content: '';
+    position: absolute;
+    top: -40%; left: 50%;
+    width: 320px; height: 320px;
+    transform: translateX(-50%);
+    background: radial-gradient(circle, rgba(196,154,42,0.10) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .lock-icon {
+    width: 56px; height: 56px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(150deg, var(--sky) 0%, var(--pearl) 100%);
+    border: 1px solid rgba(46,130,181,0.18);
+    box-shadow: 0 6px 18px rgba(46,130,181,0.16), 0 1px 0 rgba(255,255,255,0.9) inset;
+    color: var(--blue-dk);
+    position: relative; z-index: 1;
+  }
+  .lock-icon svg { width: 24px; height: 24px; }
+
+  .lock-eyebrow {
+    font-family: var(--label);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .lock-title {
+    font-family: var(--serif);
+    font-size: clamp(34px, 8vw, 46px);
+    font-weight: 600;
+    line-height: 1.02;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+    margin-bottom: 10px;
+    position: relative; z-index: 1;
+  }
+  .lock-title .accent { color: var(--blue); font-style: italic; }
+  .lock-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 17px;
+    color: var(--navy-md);
+    margin-bottom: 30px;
+    position: relative; z-index: 1;
+  }
+
+  .field-label {
+    display: block;
+    text-align: left;
+    font-family: var(--label);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--navy-lt);
+    margin-bottom: 9px;
+  }
+
+  .input {
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--navy);
+    background: rgba(255,255,255,0.85);
+    border: 1.5px solid rgba(46,130,181,0.22);
+    border-radius: 12px;
+    padding: 15px 16px;
+    transition: border-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out), background 0.2s;
+    position: relative; z-index: 1;
+  }
+  .input::placeholder { color: var(--navy-lt); opacity: 0.7; }
+  .input:hover { border-color: rgba(46,130,181,0.4); }
+  .input:focus-visible {
+    outline: none;
+    border-color: var(--blue);
+    background: var(--pearl);
+    box-shadow: 0 0 0 4px rgba(46,130,181,0.12);
+  }
+
+  /* ---- Primary button ---- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    background: var(--blue);
+    color: var(--pearl);
+    font-family: var(--label);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    padding: 17px 30px;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-out), background 0.2s;
+    box-shadow: 0 6px 24px rgba(46, 130, 181, 0.36), 0 2px 6px rgba(46, 130, 181, 0.2);
+  }
+  .btn::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.22) 0%, transparent 60%);
+  }
+  .btn:hover {
+    background: var(--blue-dk);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 36px rgba(46, 130, 181, 0.46), 0 4px 12px rgba(46, 130, 181, 0.26);
+  }
+  .btn:active { transform: translateY(0); }
+  .btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  .btn:disabled { cursor: not-allowed; opacity: 0.7; transform: none; }
+  .btn[data-loading] span { visibility: hidden; }
+  .btn[data-loading]::after {
+    content: '';
+    position: absolute;
+    width: 18px; height: 18px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-top-color: var(--pearl);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+  }
+
+  .lock-form { margin-top: 4px; position: relative; z-index: 1; }
+  .lock-form .btn { margin-top: 18px; }
+
+  .inline-error {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: #B23A48;
+    margin-top: 12px;
+    text-align: left;
+    position: relative; z-index: 1;
+  }
+
+  .lock-foot {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--navy-lt);
+    text-align: center;
+    margin-top: 24px;
+  }
+
+  /* ============================================================
+     ANIMATIONS
+  ============================================================ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="page">
+    <div class="brand-mark">
+      <span class="brand-cross">✦</span>
+      <span class="brand-name">SOFT Family Day 2026</span>
+    </div>
+
+    <!-- ============ LOCK SCREEN ============ -->
+    <section id="lock">
+      <div class="card lock-card">
+        <div class="lock-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="10.5" width="16" height="10" rx="2.5"/>
+            <path d="M8 10.5V7a4 4 0 0 1 8 0v3.5"/>
+            <circle cx="12" cy="15.2" r="1.2" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <p class="lock-eyebrow">Committee Access</p>
+        <h1 class="lock-title">Welcome, <span class="accent">Steward</span></h1>
+        <p class="lock-sub">Enter the passcode to begin registering guests.</p>
+
+        <form class="lock-form" id="lockForm" autocomplete="off" novalidate>
+          <label class="field-label" for="passcode">Passcode</label>
+          <input class="input" id="passcode" name="passcode" type="password"
+                 inputmode="text" autocapitalize="characters" placeholder="••••••••••••" required>
+          <p class="inline-error" id="lockError" hidden></p>
+          <button class="btn" id="unlockBtn" type="submit"><span>Unlock</span></button>
+        </form>
+      </div>
+      <p class="lock-foot">“Let everything be done decently and in order.”</p>
+    </section>
+
+    <!-- ============ APP (registration) ============ -->
+    <section id="app" hidden></section>
+  </main>
+
+<script>
+  // ============================================================
+  // CONFIG — set these two values
+  // ============================================================
+  const PASSCODE   = "SOFTFAMDAY26";
+  const SCRIPT_URL = "PASTE_YOUR_APPS_SCRIPT_WEB_APP_URL_HERE";
+
+  // ============================================================
+  // PASSCODE GATE
+  // ============================================================
+  const lock = document.getElementById('lock');
+  const app  = document.getElementById('app');
+
+  function unlock() {
+    lock.hidden = true;
+    app.hidden = false;
+    loadCounts();
+  }
+
+  if (sessionStorage.getItem('sfd_unlocked') === '1') unlock();
+
+  document.getElementById('lockForm').addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    const val = document.getElementById('passcode').value.trim();
+    const err = document.getElementById('lockError');
+    if (val === PASSCODE) {
+      sessionStorage.setItem('sfd_unlocked', '1');
+      unlock();
+    } else {
+      err.textContent = 'Incorrect passcode. Please try again.';
+      err.hidden = false;
+      document.getElementById('passcode').focus();
+      document.getElementById('passcode').select();
+    }
+  });
+
+  // loadCounts is defined alongside the registration form (added next task).
+  function loadCounts() { /* populated in Task 3 */ }
+</script>
+</body>
+</html>
