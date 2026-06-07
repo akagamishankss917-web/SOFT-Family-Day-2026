@@ -41,6 +41,7 @@
   ============================================================ */
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
+  [hidden] { display: none !important; }
 
   body {
     font-family: var(--sans);
@@ -313,6 +314,164 @@
   }
 
   /* ============================================================
+     COUNT HEADER
+  ============================================================ */
+  #app { opacity: 0; animation: fadeUp 0.7s var(--ease-out) forwards; }
+
+  .counts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .count-card {
+    background: rgba(255,255,255,0.78);
+    border: 1px solid rgba(46,130,181,0.14);
+    border-radius: 14px;
+    padding: 16px 10px 14px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.9) inset, 0 6px 18px rgba(46,130,181,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .count-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, transparent, var(--gold-lt), transparent);
+    opacity: 0.8;
+  }
+  .count-num {
+    font-family: var(--serif);
+    font-size: clamp(30px, 9vw, 40px);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--blue-dk);
+  }
+  .count-name {
+    font-family: var(--label);
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--navy-lt);
+    margin-top: 8px;
+    line-height: 1.3;
+  }
+
+  .count-total {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 26px;
+    padding: 11px 18px;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue-dk) 100%);
+    border-radius: 50px;
+    box-shadow: 0 8px 24px rgba(18,41,62,0.22);
+  }
+  .count-total .ct-num {
+    font-family: var(--serif);
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--gold-lt);
+    line-height: 1;
+  }
+  .count-total .ct-label {
+    font-family: var(--label);
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* ============================================================
+     REGISTRATION FORM
+  ============================================================ */
+  .form-head { text-align: center; margin-bottom: 24px; }
+  .form-eyebrow {
+    font-family: var(--label);
+    font-size: 9px; font-weight: 500;
+    letter-spacing: 0.24em; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 8px;
+  }
+  .form-title {
+    font-family: var(--serif);
+    font-size: clamp(28px, 7vw, 38px);
+    font-weight: 600; line-height: 1.05;
+    letter-spacing: -0.02em; color: var(--navy);
+  }
+  .form-title .accent { color: var(--blue); font-style: italic; }
+
+  .field { margin-bottom: 20px; }
+
+  .group-grid { display: grid; gap: 10px; }
+  .group-opt {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    width: 100%;
+    text-align: left;
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy-md);
+    background: rgba(255,255,255,0.7);
+    border: 1.5px solid rgba(46,130,181,0.2);
+    border-radius: 14px;
+    padding: 15px 17px;
+    cursor: pointer;
+    transition: border-color 0.2s var(--ease-out), background 0.2s, box-shadow 0.2s var(--ease-out), transform 0.15s var(--ease-spring);
+  }
+  .group-opt .tick {
+    width: 22px; height: 22px; flex: none;
+    border-radius: 50%;
+    border: 1.5px solid rgba(46,130,181,0.35);
+    display: grid; place-items: center;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .group-opt .tick svg { width: 13px; height: 13px; color: #fff; opacity: 0; transition: opacity 0.15s; }
+  .group-opt:hover { border-color: rgba(46,130,181,0.45); transform: translateY(-1px); }
+  .group-opt:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+  .group-opt[aria-pressed="true"] {
+    border-color: var(--blue);
+    background: linear-gradient(135deg, rgba(46,130,181,0.10) 0%, rgba(223,240,251,0.6) 100%);
+    color: var(--navy);
+    box-shadow: 0 6px 18px rgba(46,130,181,0.16), 0 0 0 3px rgba(46,130,181,0.10);
+  }
+  .group-opt[aria-pressed="true"] .tick { background: var(--blue); border-color: var(--blue); }
+  .group-opt[aria-pressed="true"] .tick svg { opacity: 1; }
+
+  .optional-tag { font-family: var(--sans); font-size: 10px; font-weight: 600; color: var(--navy-lt); text-transform: none; letter-spacing: 0.02em; }
+
+  #regForm .btn { margin-top: 8px; }
+
+  .form-msg {
+    font-family: var(--sans);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+  }
+  .form-msg[data-state="ok"]   { color: #1B6B4A; background: rgba(46,160,110,0.12); border: 1px solid rgba(46,160,110,0.25); }
+  .form-msg[data-state="err"]  { color: #B23A48; background: rgba(178,58,72,0.10);  border: 1px solid rgba(178,58,72,0.25); }
+  .form-msg[data-state="info"] { color: var(--blue-dk); background: rgba(46,130,181,0.10); border: 1px solid rgba(46,130,181,0.22); }
+
+  .app-foot {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--navy-lt);
+    text-align: center;
+    margin-top: 22px;
+  }
+
+  /* ============================================================
      ANIMATIONS
   ============================================================ */
   @keyframes fadeUp {
@@ -360,7 +519,73 @@
     </section>
 
     <!-- ============ APP (registration) ============ -->
-    <section id="app" hidden></section>
+    <section id="app" hidden>
+      <!-- Live counts -->
+      <div class="counts">
+        <div class="count-card">
+          <div class="count-num" id="cChildren">0</div>
+          <div class="count-name">Children</div>
+        </div>
+        <div class="count-card">
+          <div class="count-num" id="cYoung">0</div>
+          <div class="count-name">Young<br>People</div>
+        </div>
+        <div class="count-card">
+          <div class="count-num" id="cPastor">0</div>
+          <div class="count-name">Pastors<br>&amp; Elders</div>
+        </div>
+      </div>
+      <div class="count-total">
+        <span class="ct-num" id="cTotal">0</span>
+        <span class="ct-label">Total Registered</span>
+      </div>
+
+      <!-- Form -->
+      <div class="card">
+        <div class="form-head">
+          <p class="form-eyebrow">New Registration</p>
+          <h2 class="form-title">Register a <span class="accent">Guest</span></h2>
+        </div>
+
+        <form id="regForm" autocomplete="off" novalidate>
+          <div class="field">
+            <label class="field-label" for="fullName">Full Name</label>
+            <input class="input" id="fullName" name="fullName" type="text"
+                   autocomplete="off" placeholder="e.g. Grace Adeyemi" required>
+          </div>
+
+          <div class="field">
+            <span class="field-label">Group Category</span>
+            <div class="group-grid" id="groupGrid" role="group" aria-label="Group category">
+              <button type="button" class="group-opt" data-group="Children" aria-pressed="false">
+                <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+                Children
+              </button>
+              <button type="button" class="group-opt" data-group="Young People" aria-pressed="false">
+                <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+                Young People
+              </button>
+              <button type="button" class="group-opt" data-group="Pastor & Elders" aria-pressed="false">
+                <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
+                Pastor &amp; Elders
+              </button>
+            </div>
+            <input type="hidden" id="group" name="group" value="">
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="phone">Phone Number <span class="optional-tag">(optional)</span></label>
+            <input class="input" id="phone" name="phone" type="tel"
+                   inputmode="tel" autocomplete="off" placeholder="e.g. 080 1234 5678">
+          </div>
+
+          <button class="btn" id="submitBtn" type="submit"><span>Register Guest</span></button>
+          <p class="form-msg" id="formMsg" hidden></p>
+        </form>
+      </div>
+
+      <p class="app-foot">“Welcome one another, as Christ has welcomed you.”</p>
+    </section>
   </main>
 
 <script>
@@ -399,8 +624,86 @@
     }
   });
 
-  // loadCounts is defined alongside the registration form (added next task).
-  function loadCounts() { /* populated in Task 3 */ }
+  // ============================================================
+  // LIVE COUNTS (GET)
+  // ============================================================
+  async function loadCounts() {
+    try {
+      const res = await fetch(SCRIPT_URL);
+      const c = await res.json();
+      document.getElementById('cChildren').textContent = c['Children'] ?? 0;
+      document.getElementById('cYoung').textContent    = c['Young People'] ?? 0;
+      document.getElementById('cPastor').textContent   = c['Pastor & Elders'] ?? 0;
+      document.getElementById('cTotal').textContent    = c.total ?? 0;
+    } catch (e) {
+      /* counts are non-critical — leave existing numbers in place */
+    }
+  }
+
+  // ============================================================
+  // GROUP SELECTION
+  // ============================================================
+  const groupInput = document.getElementById('group');
+  const groupBtns = Array.prototype.slice.call(document.querySelectorAll('.group-opt'));
+
+  groupBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      groupBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+      btn.setAttribute('aria-pressed', 'true');
+      groupInput.value = btn.dataset.group;
+    });
+  });
+
+  function clearGroupSelection() {
+    groupBtns.forEach(function (b) { b.setAttribute('aria-pressed', 'false'); });
+    groupInput.value = '';
+  }
+
+  // ============================================================
+  // SUBMIT (POST)
+  // ============================================================
+  const submitBtn = document.getElementById('submitBtn');
+  const formMsg = document.getElementById('formMsg');
+
+  function showMsg(text, ok) {
+    formMsg.textContent = text;
+    formMsg.dataset.state = ok === true ? 'ok' : ok === false ? 'err' : 'info';
+    formMsg.hidden = false;
+  }
+
+  document.getElementById('regForm').addEventListener('submit', async function (ev) {
+    ev.preventDefault();
+    const fullName = document.getElementById('fullName').value.trim();
+    const group = groupInput.value;
+    const phone = document.getElementById('phone').value.trim();
+
+    if (!fullName) { showMsg('Please enter a full name.', false); return; }
+    if (!group)    { showMsg('Please choose a group.', false); return; }
+
+    submitBtn.disabled = true;
+    submitBtn.dataset.loading = '1';
+    showMsg('Saving…', null);
+
+    try {
+      const res = await fetch(SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({ fullName: fullName, group: group, phone: phone })
+      });
+      const out = await res.json();
+      if (!out.ok) throw new Error(out.error || 'Save failed');
+      showMsg('✓ ' + fullName + ' registered!', true);
+      ev.target.reset();
+      clearGroupSelection();
+      document.getElementById('fullName').focus();
+      loadCounts();
+    } catch (e) {
+      showMsg('Could not save — check your connection and tap Register again.', false);
+    } finally {
+      submitBtn.disabled = false;
+      delete submitBtn.dataset.loading;
+    }
+  });
 </script>
 </body>
 </html>
