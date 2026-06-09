@@ -368,6 +368,50 @@
 
   .bible-hero em { font-style: italic; color: var(--navy); }
 
+  /* ---- Event Date & Time banner ---- */
+  .event-when {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 0 auto 44px;
+    padding: 15px 30px;
+    background: rgba(255, 255, 255, 0.78);
+    border: 1px solid rgba(46, 130, 181, 0.2);
+    border-radius: 50px;
+    box-shadow: 0 4px 24px rgba(46, 130, 181, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    animation: fadeUp 0.9s var(--ease-out) 0.8s forwards;
+  }
+
+  .event-when-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .event-when-icon { font-size: 18px; line-height: 1; }
+
+  .event-when-text {
+    font-family: var(--serif);
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.005em;
+    white-space: nowrap;
+  }
+
+  .event-when-text .accent { color: var(--blue); }
+
+  .event-when-div {
+    width: 1px;
+    height: 24px;
+    background: rgba(46, 130, 181, 0.28);
+    flex-shrink: 0;
+  }
+
   /* ---- Countdown Timer ---- */
   .countdown-wrap {
     opacity: 0;
@@ -1558,8 +1602,39 @@
     /* Hero ring decoration scaled so it never forces overflow */
     #hero::after { width: 460px; height: 460px; }
 
+    /* Date & time banner stacks for full clarity on phones */
+    .event-when {
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+      max-width: 320px;
+      padding: 18px 24px;
+      border-radius: 22px;
+      margin-bottom: 38px;
+    }
+    .event-when-div { width: 90px; height: 1px; }
+    .event-when-text { font-size: 17px; }
+
     /* Slightly larger tap comfort on the primary CTA */
     .cta-btn { padding: 18px 38px; }
+
+    /* Details: 2×2 grid so the essentials read in one view, not a long column */
+    .glance-grid { grid-template-columns: repeat(2, 1fr); }
+    .glance-card {
+      padding: 22px 15px;
+      gap: 7px;
+      border-bottom: none;
+    }
+    .glance-icon { font-size: 23px; }
+    .glance-value { font-size: 15px; line-height: 1.25; }
+    .glance-sub { font-size: 11px; line-height: 1.5; }
+
+    /* How to Join: compact 2-up cards; the lone last name spans full width */
+    .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .contact-card { padding: 22px 12px; gap: 11px; }
+    .contact-card:last-child { grid-column: 1 / -1; }
+    .contact-avatar { width: 52px; height: 52px; font-size: 20px; }
+    .contact-name { font-size: 17px; }
   }
 
   /* Touch devices: give hover-only cards a clear pressed state */
@@ -1621,8 +1696,20 @@
       <span style="font-style:normal; font-family: var(--label); font-size:9px; letter-spacing:0.18em; color: var(--navy-lt); display:block; margin-top:10px;">— Matthew 18:20</span>
     </blockquote>
 
+    <div class="event-when">
+      <div class="event-when-item">
+        <span class="event-when-icon">📅</span>
+        <span class="event-when-text">Saturday, <span class="accent">July 11, 2026</span></span>
+      </div>
+      <span class="event-when-div"></span>
+      <div class="event-when-item">
+        <span class="event-when-icon">🕘</span>
+        <span class="event-when-text">9:00 AM – 4:00 PM</span>
+      </div>
+    </div>
+
     <div class="countdown-wrap">
-      <p class="countdown-label">Counting down to July 11, 2026</p>
+      <p class="countdown-label">Counting Down</p>
       <div class="countdown" id="countdown">
         <div class="countdown-unit">
           <span class="countdown-num" id="cd-days">000</span>
