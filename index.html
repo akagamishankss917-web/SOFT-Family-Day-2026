@@ -1635,6 +1635,82 @@
     .contact-card:last-child { grid-column: 1 / -1; }
     .contact-avatar { width: 52px; height: 52px; font-size: 20px; }
     .contact-name { font-size: 17px; }
+
+    /* ---- Venue: prominent Maps button + compact court visuals ---- */
+    .venue-address-badge {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 12px;
+      width: 100%;
+      background: transparent;
+      border: none;
+      box-shadow: none;
+      padding: 0;
+      margin-bottom: 26px;
+    }
+    .venue-address-badge span {
+      text-align: center;
+      font-size: 11px;
+      letter-spacing: 0.18em;
+    }
+    .venue-address-badge a {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 15px 18px;
+      background: var(--blue);
+      color: var(--pearl);
+      border: none;
+      border-radius: 14px;
+      box-shadow: 0 6px 22px rgba(46, 130, 181, 0.34);
+    }
+    .venue-address-badge a:active { background: var(--blue-dk); transform: scale(0.98); }
+
+    .venue-layout { gap: 14px; margin-bottom: 14px; }
+    .venue-map-wrap, .venue-video-wrap { height: 220px; }
+    .venue-gallery { grid-template-columns: 1fr 1fr; gap: 12px; }
+    .venue-photo { border-radius: 14px; }
+
+    /* ---- Program Highlights: clean compact cards instead of airy timeline ---- */
+    .timeline::before { display: none; }
+    .timeline { gap: 12px; }
+    .tl-item {
+      gap: 14px;
+      padding: 16px 16px;
+      border: 1px solid rgba(46, 130, 181, 0.12);
+      border-radius: 14px;
+      background: var(--pearl);
+      box-shadow: 0 2px 12px rgba(18, 41, 62, 0.045);
+    }
+    .tl-item:last-child { border-bottom: 1px solid rgba(46, 130, 181, 0.12); }
+    .tl-dot { width: 42px; height: 42px; font-size: 19px; }
+    .tl-body { padding-top: 2px; }
+    .tl-time { font-size: 8.5px; margin-bottom: 3px; }
+    .tl-title { font-size: 17px; line-height: 1.25; margin-bottom: 5px; }
+    .tl-desc { font-size: 13px; line-height: 1.6; }
+
+    /* ---- Who's Coming: compact horizontal cards (icon left, text right) ---- */
+    .who-grid { gap: 12px; }
+    .who-card {
+      display: grid;
+      grid-template-columns: 50px 1fr;
+      grid-template-areas: "icon title" "icon desc";
+      column-gap: 16px;
+      row-gap: 4px;
+      text-align: left;
+      padding: 20px 18px;
+      align-items: start;
+    }
+    .who-emoji {
+      grid-area: icon;
+      align-self: center;
+      margin-bottom: 0;
+      font-size: 0;
+    }
+    .who-emoji svg { width: 46px; height: 46px; }
+    .who-title { grid-area: title; align-self: end; font-size: 19px; margin-bottom: 0; }
+    .who-desc { grid-area: desc; font-size: 13px; line-height: 1.55; }
   }
 
   /* Touch devices: give hover-only cards a clear pressed state */
