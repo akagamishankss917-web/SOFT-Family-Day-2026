@@ -127,7 +127,91 @@
     transform: translateY(-1px) !important;
   }
 
-  @media (max-width: 640px) { .nav-links { display: none; } }
+  /* Hamburger toggle — hidden on desktop */
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(46, 130, 181, 0.2);
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(18, 41, 62, 0.08);
+    transition: background 0.2s, transform 0.2s var(--ease-spring);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 20px;
+    height: 2px;
+    margin: 0 auto;
+    border-radius: 2px;
+    background: var(--navy);
+    transition: transform 0.3s var(--ease-out), opacity 0.2s;
+  }
+
+  .nav-toggle:active { transform: scale(0.94); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Mobile slide-down menu */
+  .mobile-menu {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 78px 20px 22px;
+    background: rgba(242, 248, 255, 0.97);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow: 0 12px 40px rgba(18, 41, 62, 0.14);
+    border-bottom: 1px solid rgba(46, 130, 181, 0.14);
+    transform: translateY(-105%);
+    transition: transform 0.4s var(--ease-out);
+  }
+
+  .mobile-menu.open { transform: translateY(0); }
+
+  .mobile-menu a {
+    font-family: var(--serif);
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    text-decoration: none;
+    padding: 14px 14px;
+    border-radius: 12px;
+    transition: background 0.2s, color 0.2s;
+  }
+
+  .mobile-menu a:active { background: rgba(46, 130, 181, 0.1); }
+
+  .mobile-menu-cta {
+    margin-top: 8px;
+    background: var(--blue);
+    color: var(--pearl) !important;
+    text-align: center;
+    font-family: var(--label) !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: 0 4px 18px rgba(46, 130, 181, 0.32);
+  }
+
+  .mobile-menu-cta:active { background: var(--blue-dk); }
+
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .nav-toggle { display: flex; }
+  }
 
   /* ============================================================
      HERO SECTION
@@ -1434,13 +1518,56 @@
      RESPONSIVE
   ============================================================ */
   @media (max-width: 768px) {
-    .countdown-sep { display: none; }
     .glance-card { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.06); }
     .glance-card:last-child { border-bottom: none; }
     .timeline::before { left: 22px; }
     .tl-dot { width: 46px; height: 46px; font-size: 18px; }
     .family-photo-img { height: 340px; }
     .fam-photo-wrap { height: 360px; }
+  }
+
+  /* ---- Phone-first refinements ---- */
+  @media (max-width: 600px) {
+    /* Anchor links land below the fixed nav, not under it */
+    section[id] { scroll-margin-top: 72px; }
+
+    /* Countdown becomes a clean, readable 2×2 grid — no awkward wrapping */
+    .countdown-sep { display: none; }
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+    .countdown-unit {
+      min-width: 0;
+      width: 100%;
+      padding: 20px 12px 16px;
+      gap: 8px;
+    }
+    .countdown-num { font-size: 52px; }
+    .countdown-name { font-size: 12px; letter-spacing: 0.1em; }
+
+    /* Tighter, less endless vertical rhythm */
+    #hero { padding: 104px 22px 72px; }
+    #glance { padding: 64px 0; }
+    #expect, #venue, #who, #signup { padding: 68px 0; }
+    .section-desc { margin-bottom: 40px; }
+
+    /* Hero ring decoration scaled so it never forces overflow */
+    #hero::after { width: 460px; height: 460px; }
+
+    /* Slightly larger tap comfort on the primary CTA */
+    .cta-btn { padding: 18px 38px; }
+  }
+
+  /* Touch devices: give hover-only cards a clear pressed state */
+  @media (hover: none) {
+    .who-card:active,
+    .contact-card:active,
+    .venue-photo:active { transform: scale(0.98); }
+    .glance-card:active { background: rgba(255,255,255,0.09); }
   }
 </style>
 </head>
@@ -1458,7 +1585,19 @@
     <li><a href="#who">Who's Coming</a></li>
     <li><a href="#signup" class="nav-cta">Join Us</a></li>
   </ul>
+  <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile slide-down menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#glance">Details</a>
+  <a href="#venue">Venue</a>
+  <a href="#expect">Program</a>
+  <a href="#who">Who's Coming</a>
+  <a href="#signup" class="mobile-menu-cta">Join Us &nbsp;→</a>
+</div>
 
 <!-- ============================================================
      HERO
@@ -1915,6 +2054,30 @@
     };
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
+  })();
+
+  // ── Mobile Menu Toggle ────────────────────────────────────────
+  (function() {
+    const toggle = document.getElementById('nav-toggle');
+    const menu   = document.getElementById('mobile-menu');
+    if (!toggle || !menu) return;
+
+    function setOpen(open) {
+      menu.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      document.body.style.overflow = open ? 'hidden' : '';
+    }
+
+    toggle.addEventListener('click', () => setOpen(!menu.classList.contains('open')));
+
+    // Close after tapping any link
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+
+    // Close on Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && menu.classList.contains('open')) setOpen(false);
+    });
   })();
 
   // ── Scroll Reveal ─────────────────────────────────────────────
