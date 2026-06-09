@@ -293,19 +293,19 @@
 
   .countdown-label {
     font-family: var(--label);
-    font-size: 9px;
+    font-size: 12px;
     font-weight: 500;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--blue);
-    margin-bottom: 22px;
+    margin-bottom: 24px;
   }
 
   .countdown {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 12px;
     flex-wrap: wrap;
   }
 
@@ -313,44 +313,50 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 6px;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(46, 130, 181, 0.15);
+    border-radius: 12px;
+    padding: 18px 22px 14px;
+    min-width: 88px;
+    box-shadow: 0 2px 12px rgba(18, 41, 62, 0.07), 0 1px 3px rgba(46, 130, 181, 0.08);
+    backdrop-filter: blur(8px);
   }
 
   .countdown-num {
     font-family: var(--serif);
-    font-size: clamp(48px, 10vw, 92px);
+    font-size: clamp(44px, 9vw, 80px);
     font-weight: 700;
     line-height: 1;
-    color: transparent;
-    -webkit-text-stroke: 2px var(--blue);
-    letter-spacing: -0.04em;
+    color: var(--navy);
+    letter-spacing: -0.02em;
     min-width: 2ch;
     text-align: center;
-    transition: color 0.2s, -webkit-text-stroke 0.2s;
+    transition: color 0.15s, transform 0.15s;
   }
 
   .countdown-num.tick {
     color: var(--blue);
-    -webkit-text-stroke: 2px transparent;
+    transform: scale(1.04);
   }
 
   .countdown-name {
-    font-family: var(--label);
-    font-size: 9px;
-    font-weight: 500;
-    letter-spacing: 0.22em;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--navy-lt);
   }
 
   .countdown-sep {
     font-family: var(--serif);
-    font-size: clamp(36px, 7vw, 68px);
+    font-size: clamp(32px, 6vw, 56px);
     font-weight: 300;
     color: var(--sky-dk);
     line-height: 1;
-    margin-top: 4px;
-    align-self: flex-start;
+    margin-bottom: 20px;
+    align-self: center;
   }
 
   /* ---- CTA Button ---- */
