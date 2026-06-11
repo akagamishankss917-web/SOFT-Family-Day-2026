@@ -532,7 +532,7 @@
         </div>
         <div class="count-card">
           <div class="count-num" id="cPastor">0</div>
-          <div class="count-name">Pastors<br>&amp; Elders</div>
+          <div class="count-name">Pastors, Elders<br>&amp; Adults</div>
         </div>
       </div>
       <div class="count-total">
@@ -565,9 +565,9 @@
                 <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
                 Young People
               </button>
-              <button type="button" class="group-opt" data-group="Pastor & Elders" aria-pressed="false">
+              <button type="button" class="group-opt" data-group="Pastors, Elders & Adults" aria-pressed="false">
                 <span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></span>
-                Pastor &amp; Elders
+                Pastors, Elders &amp; Adults
               </button>
             </div>
             <input type="hidden" id="group" name="group" value="">
@@ -633,7 +633,7 @@
       const c = await res.json();
       document.getElementById('cChildren').textContent = c['Children'] ?? 0;
       document.getElementById('cYoung').textContent    = c['Young People'] ?? 0;
-      document.getElementById('cPastor').textContent   = c['Pastor & Elders'] ?? 0;
+      document.getElementById('cPastor').textContent   = c['Pastors, Elders & Adults'] ?? 0;
       document.getElementById('cTotal').textContent    = c.total ?? 0;
     } catch (e) {
       /* counts are non-critical — leave existing numbers in place */
